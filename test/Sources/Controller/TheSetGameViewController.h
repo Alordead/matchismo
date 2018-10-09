@@ -6,11 +6,11 @@
 //  Copyright © 2018 Александр Попов. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "PlayingCardGameViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TheSetGameViewController : UIViewController
+@interface TheSetGameViewController : PlayingCardGameViewController
 
 @end
 
