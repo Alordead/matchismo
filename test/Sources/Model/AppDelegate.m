@@ -14,6 +14,11 @@
 
 @implementation AppDelegate
 
+// Code created 04.10.18
+
+
+
+// Declarated code by Xcode
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.

@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  ViewController.h
 //  test
 //
 //  Created by Александр Попов on 04.10.2018.
@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Deck.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
+@interface CardGameViewController : UIViewController
+@property (nonatomic) BOOL gameMode;
+-(Deck *)createDeck;
 
 @end
 
