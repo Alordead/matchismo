@@ -27,12 +27,6 @@
 
 @implementation CardGameViewController
 
-//-(Deck *)someProperty
-//{
-////    if (!_someProperty) _someProperty = [[Deck alloc] initWithCardCount:self.cardButtons.count usingDeck:[self createDeck]];
-////    return _someProperty;
-//}
-
 -(CardMatchingGame *)game
 {
     if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
@@ -55,7 +49,7 @@
 
 - (IBAction)touchCardButton:(UIButton *)sender
 {
-    int cardIndex = [self.cardButtons indexOfObject:sender];
+    int cardIndex = (int)[self.cardButtons indexOfObject:sender];
     if (_gameMode) {
         [self.game chooseCardAtIndex:cardIndex atGameMode:_gameMode];
     } else {
@@ -69,7 +63,7 @@
 -(void)updateUI
 {
     for (UIButton *cardButton in self.cardButtons) {
-        int cardIndex = [self.cardButtons indexOfObject:cardButton];
+        int cardIndex = (int)[self.cardButtons indexOfObject:cardButton];
         Card *card = [self.game cardAtIndex:cardIndex];
         [cardButton setTitle:[self titleForCard:card] forState:UIControlStateNormal];
         [cardButton setBackgroundImage:[self backgroundImageForCard:card] forState:UIControlStateNormal];
@@ -106,6 +100,4 @@
     
     [self restartTheGame];
 }
-
-
 @end

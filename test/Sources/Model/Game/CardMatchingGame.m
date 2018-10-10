@@ -56,7 +56,6 @@ static const int COST_TO_CHOOSE = 1;
 
 -(void)chooseCardAtIndex:(NSUInteger)index atGameMode:(BOOL)gameMode
 {
-    Card* card = nil;
     if (gameMode) {
         Card *card = [self cardAtIndex:index];
         self.matchingCardString = [NSMutableString stringWithFormat:@""];
@@ -74,12 +73,12 @@ static const int COST_TO_CHOOSE = 1;
                         self.score += matchScore * MATCH_BONUS;
                         self.matchingResult = matchScore * MATCH_BONUS;
                         card.matched = YES;
-                        self.matchingCardString = [NSMutableString stringWithFormat:@"%@ and %@ is matching! %d points added",(NSMutableString*)[self.matchingCardsArray objectAtIndex:0], (NSMutableString*)[self.matchingCardsArray objectAtIndex:1], self.matchingResult];
+                        self.matchingCardString = [NSMutableString stringWithFormat:@"%@ and %@ is matching! %ld points added",(NSMutableString*)[self.matchingCardsArray objectAtIndex:0], (NSMutableString*)[self.matchingCardsArray objectAtIndex:1], (long)self.matchingResult];
                         otherCard.matched = YES;
                     } else {
                         self.score -= MISMATCH_PENALTY;
                         self.matchingResult = MISMATCH_PENALTY;
-                        self.matchingCardString = [NSMutableString stringWithFormat:@"%@ and %@ is NOT matching! %d points removed",(NSMutableString*)[self.matchingCardsArray objectAtIndex:0], (NSMutableString*)[self.matchingCardsArray objectAtIndex:1], self.matchingResult];
+                        self.matchingCardString = [NSMutableString stringWithFormat:@"%@ and %@ is NOT matching! %ld points removed",(NSMutableString*)[self.matchingCardsArray objectAtIndex:0], (NSMutableString*)[self.matchingCardsArray objectAtIndex:1], (long)self.matchingResult];
                         otherCard.chosen = NO;
                         [self.matchingCardsArray removeLastObject];
                     }
@@ -118,7 +117,7 @@ static const int COST_TO_CHOOSE = 1;
                                     if (!matchScore) {
                                         self.score -= MISMATCH_PENALTY*2;
                                         self.matchingResult = MISMATCH_PENALTY*2;
-                                        self.matchingCardString = [NSMutableString stringWithFormat:@"%@ and %@ is NOT matching! %d points removed",(NSMutableString*)[self.matchingCardsArray objectAtIndex:0], (NSMutableString*)[self.matchingCardsArray objectAtIndex:1], self.matchingResult];
+                                        self.matchingCardString = [NSMutableString stringWithFormat:@"%@ and %@ is NOT matching! %ld points removed",(NSMutableString*)[self.matchingCardsArray objectAtIndex:0], (NSMutableString*)[self.matchingCardsArray objectAtIndex:1], (long)self.matchingResult];
                                         [self.matchingCardsArray removeAllObjects];
                                         [self.matchingCardsArray addObject:[card contents]];
                                         otherCard.chosen = NO;
@@ -135,7 +134,7 @@ static const int COST_TO_CHOOSE = 1;
                                 if (choosenCardsCount==1) {
                                     self.score -= MISMATCH_PENALTY*2;
                                     self.matchingResult = MISMATCH_PENALTY*2;
-                                    self.matchingCardString = [NSMutableString stringWithFormat:@"%@ and %@ is NOT matching! %d points removed",(NSMutableString*)[self.matchingCardsArray objectAtIndex:0], (NSMutableString*)[self.matchingCardsArray objectAtIndex:1], self.matchingResult];
+                                    self.matchingCardString = [NSMutableString stringWithFormat:@"%@ and %@ is NOT matching! %ld points removed",(NSMutableString*)[self.matchingCardsArray objectAtIndex:0], (NSMutableString*)[self.matchingCardsArray objectAtIndex:1], (long)self.matchingResult];
                                     
                                     
                                 }
@@ -159,7 +158,7 @@ static const int COST_TO_CHOOSE = 1;
                             i++;
                         }
                     }
-                    self.matchingCardString = [NSMutableString stringWithFormat:@"%@, %@ and %@ is matching! %d points added",(NSMutableString*)[self.matchingCardsArray objectAtIndex:0], (NSMutableString*)[self.matchingCardsArray objectAtIndex:1], (NSMutableString*)[self.matchingCardsArray objectAtIndex:2], self.matchingResult];
+                    self.matchingCardString = [NSMutableString stringWithFormat:@"%@, %@ and %@ is matching! %ld points added",(NSMutableString*)[self.matchingCardsArray objectAtIndex:0], (NSMutableString*)[self.matchingCardsArray objectAtIndex:1], (NSMutableString*)[self.matchingCardsArray objectAtIndex:2], (long)self.matchingResult];
                     [self.matchingCardsArray removeAllObjects];
                 }
             }
