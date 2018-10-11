@@ -30,6 +30,7 @@
 -(CardMatchingGame *)game
 {
     if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
+    _gameMode = YES;
     return _game;
 }
 -(CardMatchingGame *)restartTheGame

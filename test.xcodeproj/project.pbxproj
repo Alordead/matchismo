@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8B00613B216D004B003797BC /* TheSetGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B00613A216D004B003797BC /* TheSetGameViewController.m */; };
+		8B00BF12216F637800665D9C /* TheSetHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B00BF11216F637800665D9C /* TheSetHistoryViewController.m */; };
 		8B07A06D21667012006BA311 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B07A06C21667012006BA311 /* Card.m */; };
 		8B07A07021667031006BA311 /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B07A06F21667031006BA311 /* Deck.m */; };
 		8B07A0732166704F006BA311 /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B07A0722166704F006BA311 /* PlayingCard.m */; };
@@ -29,6 +30,8 @@
 /* Begin PBXFileReference section */
 		8B006139216D004B003797BC /* TheSetGameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TheSetGameViewController.h; sourceTree = "<group>"; };
 		8B00613A216D004B003797BC /* TheSetGameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TheSetGameViewController.m; sourceTree = "<group>"; };
+		8B00BF10216F637800665D9C /* TheSetHistoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TheSetHistoryViewController.h; sourceTree = "<group>"; };
+		8B00BF11216F637800665D9C /* TheSetHistoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TheSetHistoryViewController.m; sourceTree = "<group>"; };
 		8B07A06B21667012006BA311 /* Card.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
 		8B07A06C21667012006BA311 /* Card.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
 		8B07A06E21667031006BA311 /* Deck.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
@@ -161,6 +164,8 @@
 				8B19C087216DFFCF00135DEE /* TheSetCardGameViewController.m */,
 				8B006139216D004B003797BC /* TheSetGameViewController.h */,
 				8B00613A216D004B003797BC /* TheSetGameViewController.m */,
+				8B00BF10216F637800665D9C /* TheSetHistoryViewController.h */,
+				8B00BF11216F637800665D9C /* TheSetHistoryViewController.m */,
 			);
 			path = TheSet;
 			sourceTree = "<group>";
@@ -273,6 +278,7 @@
 				8B1ACBCD216632C00067FA4A /* AppDelegate.m in Sources */,
 				8B07A06D21667012006BA311 /* Card.m in Sources */,
 				8B5D932A216B602600475815 /* PlayingCardGameViewController.m in Sources */,
+				8B00BF12216F637800665D9C /* TheSetHistoryViewController.m in Sources */,
 				8B00613B216D004B003797BC /* TheSetGameViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

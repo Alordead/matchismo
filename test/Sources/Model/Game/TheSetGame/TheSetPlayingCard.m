@@ -32,9 +32,9 @@
 
 - (NSString *)contents
 {
-    NSMutableString *str = [NSMutableString new];
+    NSString *str = [NSString new];
     for (int x = 1; x <= self.countOfObjectsOnTheCard; x++) {
-        str = [NSMutableString stringWithFormat:@"%@%@", str, self.typeOfCard];
+        str = [NSString stringWithFormat:@"%@%@", str, self.typeOfCard];
     }
     return str;
 }
@@ -43,6 +43,10 @@
     UIColor *color = [[UIColor alloc]init];
     color = self.colorOfObjectsOnTheCard;
     return color;
+}
+-(UIColor *)getColor
+{
+    return self.colorOfObjectsOnTheCard;
 }
 
 - (void)setColorOfObjectsOnTheCard:(UIColor *)colorOfObjectsOnTheCard

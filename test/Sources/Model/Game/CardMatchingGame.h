@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) NSInteger score;
 @property (nonatomic) NSInteger matchingResult;
-@property (strong, nonatomic) NSMutableString *matchingCardString;
+@property (strong, nonatomic) NSString *matchingCardString;
 @property (strong, nonatomic) NSMutableArray *matchingCardsArray;
 
 

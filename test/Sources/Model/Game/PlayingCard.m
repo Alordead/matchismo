@@ -13,7 +13,6 @@
 
 -(int)match:(NSArray *)otherCards atGameMode:(BOOL)gameMode
 {
-    if (nil == gameMode) { gameMode = YES;}
     int score = 0;
     if (gameMode == YES) { // 2 out 2 gamemode
     if ([otherCards count] == 1) {
@@ -78,6 +77,8 @@
     } else
         if (((par1!=par2) && (par1!=par3)) && (par2 != par3))
     {
+        theSet = YES;
+    } else if (((par1==par2) && (par1 == par3)) && (par2 == par3)) {
         theSet = YES;
     } else
     {

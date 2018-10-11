@@ -16,8 +16,7 @@
     self = [super init];
     if (self) {
          for (NSString *type in [TheSetPlayingCard validTypesOfCard]) {
-            for (NSUInteger count = 1; count <
-                 12; count++) {
+            for (NSUInteger count = 1; count < 12; count++) {
                 TheSetPlayingCard *card = [TheSetPlayingCard new];
                 card.typeOfCard = [TheSetPlayingCard randomType];
                 card.countOfObjectsOnTheCard = [TheSetPlayingCard randomCountOfObjects];

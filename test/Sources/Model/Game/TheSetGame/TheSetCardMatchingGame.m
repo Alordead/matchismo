@@ -22,7 +22,7 @@
 {
     if (!_cards) {
         _cards = [[NSMutableArray alloc] init];
-        _matchingCardString = [NSMutableString stringWithFormat:@""];
+        _matchingCardString = [NSString stringWithFormat:@""];
     }
     return _cards;
 }
@@ -51,10 +51,6 @@
     return (index < [self.cards count]) ? self.cards[index] : nil;
 }
 
-static const int MATCH_BONUS = 4;
-static const int MISMATCH_PENALTY = 2;
-static const int COST_TO_CHOOSE = 1;
-
 -(void)chooseCardAtIndex:(NSUInteger)index
 {
     TheSetPlayingCard *card = [self cardAtIndex:index];
@@ -80,11 +76,9 @@ static const int COST_TO_CHOOSE = 1;
         NSMutableArray *somecards = [[NSMutableArray alloc] init];
         
         if (choosenCardsCount == 3) {
-            int i = 0;
+            NSInteger i = 0;
             for (TheSetPlayingCard *someCard in self.cards) {
                 if (someCard.isChosen && !someCard.isMatched) {
-                    //someCard.chosen = YES;
-                    //someCard.matched = YES;
                     [self.matchingCardsArray insertObject:[someCard contents] atIndex:i];
                     [somecards insertObject:someCard atIndex:i];
                     i++;
@@ -95,11 +89,22 @@ static const int COST_TO_CHOOSE = 1;
             if (score != 0) {
                 for (Card *someCard in self.cards) {
                     if (someCard.isChosen && !someCard.isMatched) {
+                        
                         someCard.chosen = YES;
                         someCard.matched = YES;
+                        
                     }
                 }
                 self.score += score;
+                
+                
+               // NSAttributedString *string1 = [[NSAttributedString alloc] initWithString:[[somecards objectAtIndex:1] contents] attributes:@{ NSForegroundColorAttributeName: [[somecards objectAtIndex:1] getColor]}];
+              //  NSAttributedString *string2 = [[NSAttributedString alloc] initWithString:[somecards objectAtIndex:2] attributes:@{ NSForegroundColorAttributeName: [[somecards objectAtIndex:2] getColor]}];
+              // NSAttributedString *string3 = [[NSAttributedString alloc] initWithString:[somecards objectAtIndex:3] attributes:@{ NSForegroundColorAttributeName: [[somecards objectAtIndex:3] getColor]}];
+            
+                
+                self.matchingCardString = [NSMutableString stringWithFormat:@"%@, %@ and %@ is matching! 10 points added", (NSMutableString*)[[somecards objectAtIndex:0] contents], (NSMutableString*)[[somecards objectAtIndex:1] contents],(NSMutableString*)[[somecards objectAtIndex:2] contents]];
+                
             } else {
                 for (Card *someCard in self.cards) {
                     if (someCard.isChosen && !someCard.isMatched) {
@@ -108,9 +113,37 @@ static const int COST_TO_CHOOSE = 1;
                     }
             }
                 self.score -=10;
+                
+                  self.matchingCardString = [NSMutableString stringWithFormat:@"%@, %@ and %@ is not matching! 10 points removed", (NSMutableString*)[[somecards objectAtIndex:0] contents], (NSMutableString*)[[somecards objectAtIndex:1] contents],(NSMutableString*)[[somecards objectAtIndex:2] contents]];
+                
             }
             [self.matchingCardsArray removeAllObjects];
+            
         }
+    }
+}
+
+-(void)giveMeMore
+{
+    NSUInteger index = 0;
+    for (TheSetPlayingCard *card in self.cards.copy)
+    {
+        if (card.isMatched) {
+            
+            card.typeOfCard = [TheSetPlayingCard randomType];
+            card.countOfObjectsOnTheCard = [TheSetPlayingCard randomCountOfObjects];
+            UIColor *c = [UIColor new];
+            c =[TheSetPlayingCard randomColor];
+            if (!c) { c = [UIColor blackColor]; }
+            card.colorOfObjectsOnTheCard = c;
+            
+            card.chosen = NO;
+            card.matched = NO;
+            
+            self.cards[index] = card;
+            
+        }
+        index++;
     }
 }
 

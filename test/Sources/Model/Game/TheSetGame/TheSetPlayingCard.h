@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(UIColor *)randomColor;
 +(NSString *)randomType;
 +(NSUInteger)randomCountOfObjects;
+-(UIColor *)getColor;
 
 @end
 

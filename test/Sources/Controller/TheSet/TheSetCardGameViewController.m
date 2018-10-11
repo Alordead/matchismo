@@ -10,6 +10,7 @@
 #import "TheSetPlayingCardDeck.h"
 #import "TheSetCardMatchingGame.h"
 #import "TheSetPlayingCard.h"
+#import "TheSetHistoryViewController.h"
 
 @interface TheSetCardGameViewController()
 
@@ -19,10 +20,29 @@
 @property (strong, nonatomic) TheSetCardMatchingGame *game;
 @property (weak, nonatomic) IBOutlet UIButton *theSetUIButton;
 @property (weak, nonatomic) IBOutlet UIButton *restartUIButton;
+@property (weak, nonatomic) IBOutlet UILabel *lastOperationLabel;
+@property (strong, nonatomic) NSMutableArray *historyArray;
 
 @end
 
 @implementation TheSetCardGameViewController
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+        if([segue.destinationViewController isKindOfClass:[TheSetHistoryViewController class]]) {
+            TheSetHistoryViewController *tshvc = (TheSetHistoryViewController *)segue.destinationViewController;
+            tshvc.historyArray = self.historyArray;
+        }
+}
+
+-(NSMutableArray *)historyArray
+{
+    if (!_historyArray)
+    {
+        _historyArray = [[NSMutableArray alloc] init];
+    }
+    return _historyArray;
+}
 
 -(TheSetCardMatchingGame *)game
 {
@@ -37,6 +57,7 @@
 {
     _game = [[TheSetCardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
    [self updateUI];
+    [self.historyArray removeAllObjects];
     return _game;
 }
 
@@ -57,7 +78,16 @@
         [cardButton setBackgroundImage:[self backgroundImageForCard:card] forState:UIControlStateNormal];
         cardButton.enabled = !card.isMatched;
     }
+    
+    
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", (long)self.game.score];
+    
+    NSMutableString *labelString = [NSMutableString stringWithFormat:@"%@", self.game.matchingCardString];
+    
+    self.lastOperationLabel.text = labelString;
+    if (self.game.matchingCardString != self.historyArray.lastObject) {
+    [self.historyArray addObject:self.lastOperationLabel.text];
+    }
 }
 
 -(NSString *)titleForCard:(Card *)card
@@ -81,7 +111,8 @@
 }
 
 - (IBAction)giveMeMoreButton:(id)sender {
-    
+    [self.game giveMeMore];
+    [self updateUI];
 }
 
 
