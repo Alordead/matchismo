@@ -7,6 +7,7 @@
 //
 
 #import "TheSetCardMatchingGame.h"
+#import "TheSetPlayingCard.h"
 
 @interface TheSetCardMatchingGame()
 
@@ -56,7 +57,7 @@ static const int COST_TO_CHOOSE = 1;
 
 -(void)chooseCardAtIndex:(NSUInteger)index
 {
-    Card *card = [self cardAtIndex:index];
+    TheSetPlayingCard *card = [self cardAtIndex:index];
     
     [self.matchingCardsArray addObject:[card contents]];
     int choosenCardsCount = 1;
@@ -66,7 +67,7 @@ static const int COST_TO_CHOOSE = 1;
             [self.matchingCardsArray removeLastObject];
         } else {
             
-            for (Card *otherCard in self.cards) {
+            for (TheSetPlayingCard *otherCard in self.cards) {
                 if (otherCard.isChosen && !otherCard.isMatched) {
                     
                     //int matchScore = [card match:@[otherCard]];
@@ -76,19 +77,21 @@ static const int COST_TO_CHOOSE = 1;
             }
             card.chosen = YES;
         }
+        NSMutableArray *somecards = [[NSMutableArray alloc] init];
+        
         if (choosenCardsCount == 3) {
             int i = 0;
-            for (Card *someCard in self.cards) {
+            for (TheSetPlayingCard *someCard in self.cards) {
                 if (someCard.isChosen && !someCard.isMatched) {
                     //someCard.chosen = YES;
                     //someCard.matched = YES;
                     [self.matchingCardsArray insertObject:[someCard contents] atIndex:i];
-                    
+                    [somecards insertObject:someCard atIndex:i];
                     i++;
                 }
             }
             
-            int score = [card checkingTheSet:self.matchingCardsArray];
+            int score = [card checkingTheSet:somecards];
             if (score != 0) {
                 for (Card *someCard in self.cards) {
                     if (someCard.isChosen && !someCard.isMatched) {
@@ -96,8 +99,15 @@ static const int COST_TO_CHOOSE = 1;
                         someCard.matched = YES;
                     }
                 }
+                self.score += score;
             } else {
-                
+                for (Card *someCard in self.cards) {
+                    if (someCard.isChosen && !someCard.isMatched) {
+                        someCard.chosen = NO;
+                        someCard.matched = NO;
+                    }
+            }
+                self.score -=10;
             }
             [self.matchingCardsArray removeAllObjects];
         }

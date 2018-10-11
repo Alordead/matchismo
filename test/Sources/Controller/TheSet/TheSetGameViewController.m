@@ -15,13 +15,9 @@
 
 @implementation TheSetGameViewController
 
-- (Deck *)createDeck
+- (TheSetPlayingCardDeck *)createDeck
 {
     return  [[TheSetPlayingCardDeck alloc] init];
-}
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
 }
 
 

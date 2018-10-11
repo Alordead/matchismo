@@ -7,6 +7,7 @@
 //
 
 #import "PlayingCard.h"
+#import "TheSetPlayingCard.h"
 
 @implementation PlayingCard
 
@@ -54,6 +55,35 @@
 -(int)checkingTheSet:(NSMutableArray *)cards
 {
     int score = 0;
+    BOOL theSet = NO;
+    int par1 = 0, par2 = 0, par3 = 0;
+    
+    TheSetPlayingCard *card = [cards firstObject];
+    
+        for (TheSetPlayingCard *card2 in cards)
+        {
+            if (card.colorOfObjectsOnTheCard == card2.colorOfObjectsOnTheCard) {
+                par1++;
+            }
+            if (card.countOfObjectsOnTheCard == card2.countOfObjectsOnTheCard) {
+                par2++;
+            }
+            if (card.typeOfCard == card2.typeOfCard) {
+                par3++;
+            }
+        }
+    
+    if (par1==par2==par3) {
+        theSet = YES;
+    } else
+        if (((par1!=par2) && (par1!=par3)) && (par2 != par3))
+    {
+        theSet = YES;
+    } else
+    {
+        theSet = NO;
+    }
+    if (theSet) score = 10;
     
     return score;
 }

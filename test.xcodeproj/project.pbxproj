@@ -16,9 +16,9 @@
 		8B19C082216DFAE600135DEE /* TheSetPlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B19C081216DFAE600135DEE /* TheSetPlayingCardDeck.m */; };
 		8B19C085216DFDED00135DEE /* TheSetCardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B19C084216DFDED00135DEE /* TheSetCardMatchingGame.m */; };
 		8B19C088216DFFCF00135DEE /* TheSetCardGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B19C087216DFFCF00135DEE /* TheSetCardGameViewController.m */; };
+		8B19C08C216E683300135DEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B19C08A216E683200135DEE /* Main.storyboard */; };
 		8B1ACBCD216632C00067FA4A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B1ACBCC216632C00067FA4A /* AppDelegate.m */; };
 		8B1ACBD0216632C00067FA4A /* CardGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B1ACBCF216632C00067FA4A /* CardGameViewController.m */; };
-		8B1ACBD3216632C00067FA4A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B1ACBD1216632C00067FA4A /* Main.storyboard */; };
 		8B1ACBD5216632C10067FA4A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B1ACBD4216632C10067FA4A /* Assets.xcassets */; };
 		8B1ACBD8216632C10067FA4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B1ACBD6216632C10067FA4A /* LaunchScreen.storyboard */; };
 		8B1ACBDB216632C10067FA4A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B1ACBDA216632C10067FA4A /* main.m */; };
@@ -45,12 +45,12 @@
 		8B19C084216DFDED00135DEE /* TheSetCardMatchingGame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TheSetCardMatchingGame.m; sourceTree = "<group>"; };
 		8B19C086216DFFCF00135DEE /* TheSetCardGameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TheSetCardGameViewController.h; sourceTree = "<group>"; };
 		8B19C087216DFFCF00135DEE /* TheSetCardGameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TheSetCardGameViewController.m; sourceTree = "<group>"; };
+		8B19C08B216E683200135DEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8B1ACBC8216632C00067FA4A /* test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B1ACBCB216632C00067FA4A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8B1ACBCC216632C00067FA4A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		8B1ACBCE216632C00067FA4A /* CardGameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardGameViewController.h; sourceTree = "<group>"; };
 		8B1ACBCF216632C00067FA4A /* CardGameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardGameViewController.m; sourceTree = "<group>"; };
-		8B1ACBD2216632C00067FA4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8B1ACBD4216632C10067FA4A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B1ACBD7216632C10067FA4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B1ACBD9216632C10067FA4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -105,8 +105,8 @@
 		8B07A06821666A62006BA311 /* Resourses */ = {
 			isa = PBXGroup;
 			children = (
-				8B1ACBD1216632C00067FA4A /* Main.storyboard */,
 				8B1ACBD4216632C10067FA4A /* Assets.xcassets */,
+				8B19C08A216E683200135DEE /* Main.storyboard */,
 				8B1ACBD6216632C10067FA4A /* LaunchScreen.storyboard */,
 				8B1ACBD9216632C10067FA4A /* Info.plist */,
 			);
@@ -247,9 +247,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B19C08C216E683300135DEE /* Main.storyboard in Resources */,
 				8B1ACBD8216632C10067FA4A /* LaunchScreen.storyboard in Resources */,
 				8B1ACBD5216632C10067FA4A /* Assets.xcassets in Resources */,
-				8B1ACBD3216632C00067FA4A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,10 +280,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		8B1ACBD1216632C00067FA4A /* Main.storyboard */ = {
+		8B19C08A216E683200135DEE /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8B1ACBD2216632C00067FA4A /* Base */,
+				8B19C08B216E683200135DEE /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

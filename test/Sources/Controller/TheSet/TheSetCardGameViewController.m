@@ -26,7 +26,11 @@
 
 -(TheSetCardMatchingGame *)game
 {
-   if (!_game) _game = [[TheSetCardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
+   if (!_game)
+   {
+       _game = [[TheSetCardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
+       
+   }
    return _game;
 }
 -(TheSetCardMatchingGame *)restartTheGame
@@ -76,6 +80,9 @@
     [self restartTheGame];
 }
 
+- (IBAction)giveMeMoreButton:(id)sender {
+    
+}
 
 
 
