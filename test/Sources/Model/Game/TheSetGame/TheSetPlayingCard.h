@@ -1,11 +1,3 @@
-//
-//  TheSetPlayingCard.h
-//  test
-//
-//  Created by Александр Попов on 10.10.2018.
-//  Copyright © 2018 Александр Попов. All rights reserved.
-//
-
 #import "PlayingCard.h"
 #import <UIKit/UIKit.h>
 

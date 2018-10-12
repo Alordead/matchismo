@@ -1,14 +1,7 @@
- //
-//  ViewController.m
-//  test
-//
-//  Created by Александр Попов on 04.10.2018.
-//  Copyright © 2018 Александр Попов. All rights reserved.
-//
-
 #import "CardGameViewController.h"
 #import "PlayingCardDeck.h"
 #import "CardMatchingGame.h"
+#import "TheSetHistoryViewController.h"
 
 @interface CardGameViewController ()
 
@@ -22,10 +15,28 @@
 @property (weak, nonatomic) IBOutlet UILabel *gameModeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *warningNeedToRestartLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastOperationLabel;
+@property (strong, nonatomic) NSMutableArray *historyArray;
 
 @end
 
 @implementation CardGameViewController
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.destinationViewController isKindOfClass:[TheSetHistoryViewController class]]) {
+        TheSetHistoryViewController *tshvc = (TheSetHistoryViewController *)segue.destinationViewController;
+        tshvc.historyArray = self.historyArray;
+    }
+}
+
+-(NSMutableArray *)historyArray
+{
+    if (!_historyArray)
+    {
+        _historyArray = [[NSMutableArray alloc] init];
+    }
+    return _historyArray;
+}
 
 -(CardMatchingGame *)game
 {
@@ -33,6 +44,7 @@
     _gameMode = YES;
     return _game;
 }
+
 -(CardMatchingGame *)restartTheGame
 {
     _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
@@ -46,7 +58,6 @@
     //self.lastOperationLabel = [NSString stringWithFormat:@""];
     return _game;
 }
-
 
 - (IBAction)touchCardButton:(UIButton *)sender
 {
@@ -71,7 +82,14 @@
          cardButton.enabled = !card.isMatched;
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", (long)self.game.score];
-    self.lastOperationLabel.text = [NSString stringWithFormat:@"%@", self.game.matchingCardString];
+    
+    NSString *gamestring = self.game.matchingCardString;
+    self.lastOperationLabel.attributedText =  [[NSAttributedString alloc] initWithString:gamestring];
+    
+    if (self.lastOperationLabel.attributedText != self.historyArray.lastObject) {
+        [self.historyArray addObject:self.lastOperationLabel.attributedText];
+    }
+    
 }
          
 -(NSString *)titleForCard:(Card *)card
@@ -83,8 +101,6 @@
 {
     return [UIImage imageNamed:card.isChosen ? @"cardfront" : @"cardback"];
 }
-
-// Homework 2
 
 - (IBAction)actionOnChangedSwitch:(id)sender
 {
@@ -98,7 +114,8 @@
 }
 - (IBAction)restartTheGameAction:(id)sender
 {
-    
+    [self.historyArray removeAllObjects];
     [self restartTheGame];
 }
+
 @end

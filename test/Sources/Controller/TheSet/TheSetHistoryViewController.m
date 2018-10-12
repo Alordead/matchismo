@@ -1,11 +1,3 @@
-//
-//  TheSetHistoryViewController.m
-//  test
-//
-//  Created by Александр Попов on 11.10.2018.
-//  Copyright © 2018 Александр Попов. All rights reserved.
-//
-
 #import "TheSetHistoryViewController.h"
 
 @interface TheSetHistoryViewController()
@@ -19,9 +11,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    for (NSString *array in self.historyArray)
+    for (NSMutableAttributedString *line in self.historyArray)
     {
-        [self.historyTextView setText:[NSString stringWithFormat:@"%@\n%@",self.historyTextView.text, (NSString*)array]];
+        NSMutableAttributedString *oldStr = self.historyTextView.attributedText.mutableCopy;
+        [oldStr appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"]];
+        [oldStr appendAttributedString:line];
+        
+        self.historyTextView.attributedText = oldStr;
     }
     
 }

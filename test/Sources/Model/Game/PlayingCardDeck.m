@@ -1,11 +1,3 @@
-//
-//  PlayingCardDeck.m
-//  test
-//
-//  Created by Александр Попов on 04.10.2018.
-//  Copyright © 2018 Александр Попов. All rights reserved.
-//
-
 #import "PlayingCardDeck.h"
 #import "PlayingCard.h"
 

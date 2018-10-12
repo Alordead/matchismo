@@ -1,11 +1,3 @@
-//
-//  CardMatchingGame.m
-//  test
-//
-//  Created by Александр Попов on 05.10.2018.
-//  Copyright © 2018 Александр Попов. All rights reserved.
-//
-
 #import "CardMatchingGame.h"
 
 @interface CardMatchingGame()
@@ -125,18 +117,13 @@ static const int COST_TO_CHOOSE = 1;
                                     }
                                     break;
                                 }
-                                
                                 self.score += matchScore * MATCH_BONUS;
                                 self.matchingResult = matchScore * MATCH_BONUS;
-                                //card.matched = YES;
-                                //otherCard.matched = YES;
                             } else {
                                 if (choosenCardsCount==1) {
                                     self.score -= MISMATCH_PENALTY*2;
                                     self.matchingResult = MISMATCH_PENALTY*2;
                                     self.matchingCardString = [NSMutableString stringWithFormat:@"%@ and %@ is NOT matching! %ld points removed",(NSMutableString*)[self.matchingCardsArray objectAtIndex:0], (NSMutableString*)[self.matchingCardsArray objectAtIndex:1], (long)self.matchingResult];
-                                    
-                                    
                                 }
                                 [self.matchingCardsArray removeAllObjects];
                                 [self.matchingCardsArray addObject:[card contents]];
@@ -163,7 +150,6 @@ static const int COST_TO_CHOOSE = 1;
                 }
             }
         }
-        
     }
 
 -(instancetype)init

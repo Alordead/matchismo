@@ -1,11 +1,3 @@
-//
-//  PlayingCard.m
-//  test
-//
-//  Created by Александр Попов on 04.10.2018.
-//  Copyright © 2018 Александр Попов. All rights reserved.
-//
-
 #import "PlayingCard.h"
 #import "TheSetPlayingCard.h"
 
@@ -17,12 +9,12 @@
     if (gameMode == YES) { // 2 out 2 gamemode
     if ([otherCards count] == 1) {
         PlayingCard *otherCard = [otherCards firstObject];
-        if ([self.suit isEqualToString:otherCard.suit]) {
-            score = 1;
-        } else if (self.rank == otherCard.rank) {
-            score = 4;
+            if ([self.suit isEqualToString:otherCard.suit]) {
+                score = 1;
+            } else if (self.rank == otherCard.rank) {
+                score = 4;
+            }
         }
-    }
     } else if (gameMode == NO) { // 3 out 3 gamemode
         if ([otherCards count] == 2) {
             PlayingCard *otherCard = [otherCards firstObject];

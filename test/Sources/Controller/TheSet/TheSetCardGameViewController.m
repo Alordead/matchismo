@@ -1,11 +1,3 @@
-//
-//  TheSetCardGameViewController.m
-//  test
-//
-//  Created by Александр Попов on 10.10.2018.
-//  Copyright © 2018 Александр Попов. All rights reserved.
-//
-
 #import "TheSetCardGameViewController.h"
 #import "TheSetPlayingCardDeck.h"
 #import "TheSetCardMatchingGame.h"
@@ -29,7 +21,7 @@
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-        if([segue.destinationViewController isKindOfClass:[TheSetHistoryViewController class]]) {
+        if ([segue.destinationViewController isKindOfClass:[TheSetHistoryViewController class]]) {
             TheSetHistoryViewController *tshvc = (TheSetHistoryViewController *)segue.destinationViewController;
             tshvc.historyArray = self.historyArray;
         }
@@ -37,8 +29,7 @@
 
 -(NSMutableArray *)historyArray
 {
-    if (!_historyArray)
-    {
+    if (!_historyArray) {
         _historyArray = [[NSMutableArray alloc] init];
     }
     return _historyArray;
@@ -46,17 +37,15 @@
 
 -(TheSetCardMatchingGame *)game
 {
-   if (!_game)
-   {
+   if (!_game) {
        _game = [[TheSetCardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
-       
    }
    return _game;
 }
 -(TheSetCardMatchingGame *)restartTheGame
 {
     _game = [[TheSetCardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
-   [self updateUI];
+    [self updateUI];
     [self.historyArray removeAllObjects];
     return _game;
 }
@@ -82,11 +71,10 @@
     
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", (long)self.game.score];
     
-    NSMutableString *labelString = [NSMutableString stringWithFormat:@"%@", self.game.matchingCardString];
-    
-    self.lastOperationLabel.text = labelString;
+    self.lastOperationLabel.attributedText = self.game.matchingCardString;
     if (self.game.matchingCardString != self.historyArray.lastObject) {
-    [self.historyArray addObject:self.lastOperationLabel.text];
+    [self.historyArray addObject:self.lastOperationLabel.attributedText];
+        
     }
 }
 
@@ -114,10 +102,5 @@
     [self.game giveMeMore];
     [self updateUI];
 }
-
-
-
-
-
 
 @end

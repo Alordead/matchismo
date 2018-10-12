@@ -1,11 +1,3 @@
-//
-//  TheSetPlayingCardDeck.m
-//  test
-//
-//  Created by Александр Попов on 10.10.2018.
-//  Copyright © 2018 Александр Попов. All rights reserved.
-//
-
 #import "TheSetPlayingCardDeck.h"
 #import "TheSetPlayingCard.h"
 
@@ -15,7 +7,7 @@
 {
     self = [super init];
     if (self) {
-         for (NSString *type in [TheSetPlayingCard validTypesOfCard]) {
+        for (NSInteger x = 0; x<4;x++) {
             for (NSUInteger count = 1; count < 12; count++) {
                 TheSetPlayingCard *card = [TheSetPlayingCard new];
                 card.typeOfCard = [TheSetPlayingCard randomType];
