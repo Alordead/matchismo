@@ -40,32 +40,34 @@
 
 -(CardMatchingGame *)game
 {
-    if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
-    _gameMode = YES;
+    if (!_game) { _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
+        self.gameMode = YES; }
     return _game;
 }
 
 -(CardMatchingGame *)restartTheGame
 {
-    _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
+    self.game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
     [self updateUI];
-    if ([self.gameModeLabel.text isEqualToString: @"3 out 3 mode"]) {
-        _gameMode = NO;
-    } else {_gameMode = YES; }
     
-    [_switchTheGameModeButton setEnabled:YES];
+    [self.switchTheGameModeButton setEnabled:YES];
     [self.warningNeedToRestartLabel setHidden:YES];
+    
+    if ([self.switchTheGameModeButton isOn]) {
+        self.gameMode = YES;
+    } else { self.gameMode = NO; }
+    
     //self.lastOperationLabel = [NSString stringWithFormat:@""];
-    return _game;
+    return self.game;
 }
 
 - (IBAction)touchCardButton:(UIButton *)sender
 {
     int cardIndex = (int)[self.cardButtons indexOfObject:sender];
     if (_gameMode) {
-        [self.game chooseCardAtIndex:cardIndex atGameMode:_gameMode];
+        [self.game chooseCardAtIndex:cardIndex atGameMode:self.gameMode];
     } else {
-        [self.game chooseCardAtIndex:cardIndex atGameMode:_gameMode];
+        [self.game chooseCardAtIndex:cardIndex atGameMode:self.gameMode];
     }
     
     [_switchTheGameModeButton setEnabled:NO];

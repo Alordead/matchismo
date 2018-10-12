@@ -45,7 +45,7 @@
 -(void)chooseCardAtIndex:(NSUInteger)index
 {
     TheSetPlayingCard *card = [self cardAtIndex:index];
-    
+    [self.matchingCardString initWithString:@""];
     [self.matchingCardsArray addObject:[card contents]];
     int choosenCardsCount = 1;
     if (!card.isMatched) {
@@ -72,6 +72,11 @@
                     i++;
                 }
             }
+            
+            TheSetPlayingCard *card1 = [somecards objectAtIndex:0];
+            TheSetPlayingCard *card2 = [somecards objectAtIndex:1];
+            TheSetPlayingCard *card3 = [somecards objectAtIndex:2];
+            
             int score = [card checkingTheSet:somecards];
             if (score != 0) {
                 for (Card *someCard in self.cards) {
@@ -82,18 +87,22 @@
                     }
                 }
                 self.score += score;
-                
-                TheSetPlayingCard *card1 = [somecards objectAtIndex:0];
-                TheSetPlayingCard *card2 = [somecards objectAtIndex:1];
-                TheSetPlayingCard *card3 = [somecards objectAtIndex:2];
 
-                NSString *line = [NSString stringWithFormat:@"%@, %@ and %@ is matching! 10 points added", card1.contents, card2.contents, card3.contents];
                 
+//                NSAttributedString *card1astr = [[NSAttributedString alloc] initWithString:card1.contents attributes:@{ NSForegroundColorAttributeName: card1.getColor }];
+//                NSAttributedString *card2astr = [[NSAttributedString alloc] initWithString:card2.contents attributes:@{ NSForegroundColorAttributeName: card2.getColor }];
+//                NSAttributedString *card3astr = [[NSAttributedString alloc] initWithString:card3.contents attributes:@{ NSForegroundColorAttributeName: card3.getColor }];
+//
+//                NSMutableAttributedString *astr = [NSMutableAttributedString new];
+//                [astr appendAttributedString:card1astr];
+//                [astr appendAttributedString:card2astr];
+//                [astr appendAttributedString:card3astr];
+
+                NSString *line = @"%card1%, %card2% and %card3% is matching! 10 points added";
                 NSMutableAttributedString *astr = [[NSMutableAttributedString alloc] initWithString:line];
-                
-                [astr addAttribute:NSForegroundColorAttributeName value:[card1 getColor] range:[line rangeOfString:[card1 contents]]];
-                [astr addAttribute:NSForegroundColorAttributeName value:[card2 getColor] range:[line rangeOfString:[card2 contents]]];
-                [astr addAttribute:NSForegroundColorAttributeName value:[card3 getColor] range:[line rangeOfString:[card3 contents]]];
+                [self colorCard:card1 insideLine:astr withFormat:@"%card1%"];
+                [self colorCard:card2 insideLine:astr withFormat:@"%card2%"];
+                [self colorCard:card3 insideLine:astr withFormat:@"%card3%"];
                 
                 self.matchingCardString = astr.copy;
                 
@@ -105,19 +114,14 @@
                     }
             }
                 self.score -=10;
-
-                TheSetPlayingCard *card1 = [somecards objectAtIndex:0];
-                TheSetPlayingCard *card2 = [somecards objectAtIndex:1];
-                TheSetPlayingCard *card3 = [somecards objectAtIndex:2];
                 
-                NSString *line = [NSString stringWithFormat:@"%@, %@ and %@ is not matching! 10 points removed", card1.contents, card2.contents, card3.contents];
                 
+                NSString *line = @"%card1%, %card2% and %card3% is not matching! 10 points removed";
                 NSMutableAttributedString *astr = [[NSMutableAttributedString alloc] initWithString:line];
-                
-                [astr addAttribute:NSForegroundColorAttributeName value:[card1 getColor] range:[line rangeOfString:[card1 contents]]];
-                [astr addAttribute:NSForegroundColorAttributeName value:[card2 getColor] range:[line rangeOfString:[card2 contents]]];
-                [astr addAttribute:NSForegroundColorAttributeName value:[card3 getColor] range:[line rangeOfString:[card3 contents]]];
-                
+                [self colorCard:card1 insideLine:astr withFormat:@"%card1%"];
+                [self colorCard:card2 insideLine:astr withFormat:@"%card2%"];
+                [self colorCard:card3 insideLine:astr withFormat:@"%card3%"];
+
                 self.matchingCardString = astr.copy;
                 
             }
@@ -125,6 +129,16 @@
             
         }
     }
+}
+
+
+- (void)colorCard:(TheSetPlayingCard *)card insideLine:(NSMutableAttributedString *)attrLine withFormat:(NSString *)format
+{
+    NSRange r = [attrLine.string rangeOfString:format];
+    NSAttributedString *attributedCardString = [[NSAttributedString alloc] initWithString:card.contents attributes:@{ NSForegroundColorAttributeName: card.getColor }];
+    
+    [attrLine replaceCharactersInRange:r withString:@""];
+    [attrLine insertAttributedString:attributedCardString atIndex:r.location];
 }
 
 -(void)giveMeMore

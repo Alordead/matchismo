@@ -54,6 +54,7 @@
 {
     int cardIndex = (int)[self.cardButtons indexOfObject:sender];
     [self.game chooseCardAtIndex:cardIndex];
+    
     [self updateUI];
 }
 
@@ -71,8 +72,9 @@
     
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", (long)self.game.score];
     
+    NSAttributedString *testString = [[NSAttributedString alloc] initWithString:@""];
     self.lastOperationLabel.attributedText = self.game.matchingCardString;
-    if (self.game.matchingCardString != self.historyArray.lastObject) {
+    if (self.historyArray.lastObject != self.lastOperationLabel.attributedText) {
     [self.historyArray addObject:self.lastOperationLabel.attributedText];
         
     }

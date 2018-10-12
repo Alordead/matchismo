@@ -139,14 +139,32 @@ static const int COST_TO_CHOOSE = 1;
                     int i = 0;
                     for (Card *someCard in self.cards) {
                         if (someCard.isChosen && !someCard.isMatched) {
-                            someCard.chosen = YES;
-                            someCard.matched = YES;
+                            //someCard.chosen = YES;
+                            //someCard.matched = YES;
                             [self.matchingCardsArray insertObject:[someCard contents] atIndex:i];
                             i++;
                         }
                     }
+                    if (i == 3) {
+                        for (Card *someCard in self.cards) {
+                            if (someCard.isChosen && !someCard.isMatched) {
+                                someCard.chosen = YES;
+                                someCard.matched = YES;
+                            }
+                        }
                     self.matchingCardString = [NSMutableString stringWithFormat:@"%@, %@ and %@ is matching! %ld points added",(NSMutableString*)[self.matchingCardsArray objectAtIndex:0], (NSMutableString*)[self.matchingCardsArray objectAtIndex:1], (NSMutableString*)[self.matchingCardsArray objectAtIndex:2], (long)self.matchingResult];
                     [self.matchingCardsArray removeAllObjects];
+                    } else if (i == 2) {
+                        for (Card *someCard in self.cards) {
+                            if (someCard.isChosen && !someCard.isMatched) {
+                                someCard.chosen = NO;
+                                someCard.matched = NO;
+                            }
+                        }
+                        self.matchingCardString = [NSMutableString stringWithFormat:@"%@, %@ and %@ is NOT matching! %d points removed",(NSMutableString*)[self.matchingCardsArray objectAtIndex:0], (NSMutableString*)[self.matchingCardsArray objectAtIndex:1], (NSMutableString*)[self.matchingCardsArray objectAtIndex:2], (COST_TO_CHOOSE*4)];
+                        self.score -= COST_TO_CHOOSE*4;
+                        [self.matchingCardsArray removeAllObjects];
+                    }
                 }
             }
         }

@@ -6,7 +6,7 @@
 -(int)match:(NSArray *)otherCards atGameMode:(BOOL)gameMode
 {
     int score = 0;
-    if (gameMode == YES) { // 2 out 2 gamemode
+     // 2 out 2 gamemode
     if ([otherCards count] == 1) {
         PlayingCard *otherCard = [otherCards firstObject];
             if ([self.suit isEqualToString:otherCard.suit]) {
@@ -14,17 +14,6 @@
             } else if (self.rank == otherCard.rank) {
                 score = 4;
             }
-        }
-    } else if (gameMode == NO) { // 3 out 3 gamemode
-        if ([otherCards count] == 2) {
-            PlayingCard *otherCard = [otherCards firstObject];
-            PlayingCard *otherCard2 = [otherCards objectAtIndex:1];
-            if ([self.suit isEqualToString:otherCard.suit] && [self.suit isEqualToString:otherCard2.suit]) {
-                score = 1;
-            } else if (self.rank == otherCard.rank && self.rank == otherCard2.rank) {
-                score = 4;
-            }
-        }
     }
     return score;
 }
